@@ -6,7 +6,6 @@ import Square from "./components/Board.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-        {/* <App /> */}
         <Square></Square>
-    </React.StrictMode>
+    </React.StrictMode>,
 );
