@@ -4,10 +4,12 @@ import { Button, Title } from "@mantine/core";
 import "./Board.css";
 import Square from "./Square.tsx";
 
-export type SquareSymbols = "X" | "O" | null;
+type PlayerSquareSymbols = "X" | "O";
+export type SquareSymbols = PlayerSquareSymbols | null;
 
 export default function Board() {
-    const [xIsNext, setXIsNext] = useState<boolean>(true);
+    const [currentSymbol, setCurrentSymbol] =
+        useState<PlayerSquareSymbols>("X");
     const [squares, setSquares] = useState<SquareSymbols[]>(
         Array(9).fill(null),
     );
@@ -17,17 +19,60 @@ export default function Board() {
             return;
         }
         const nextSquares = squares.slice();
-        if (xIsNext) {
-            nextSquares[i] = "X";
-        } else {
-            nextSquares[i] = "O";
+        let nextSymbol: PlayerSquareSymbols = "X";
+
+        switch (currentSymbol) {
+            case "X":
+                nextSquares[i] = "X";
+                nextSymbol = "O";
+                break;
+            case "O":
+                nextSquares[i] = "O";
+                nextSymbol = "X";
+                break;
+            default:
+                break;
         }
+
         setSquares(nextSquares);
-        setXIsNext(!xIsNext);
+        if (calculateWinner(nextSquares) != null) {
+            console.log(`Ganhador é ${currentSymbol}`);
+        }
+        setCurrentSymbol(nextSymbol);
     }
 
     function handleRestart() {
         setSquares(Array(9).fill(null));
+        setCurrentSymbol("X");
+    }
+
+    function calculateWinner(squares: SquareSymbols[]): SquareSymbols {
+        const lines = [
+            // horizontal
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            // vertical
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            // diagonal
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
+
+        for (const line of lines) {
+            let counter = 0;
+            for (const number of line) {
+                if (squares[number] === currentSymbol) {
+                    counter++;
+                    if (counter === line.length) {
+                        return currentSymbol;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     return (
