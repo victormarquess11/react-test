@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Title } from "@mantine/core";
 
 import "./Board.css";
 import Square from "./Square.tsx";
@@ -12,6 +13,9 @@ export default function Board() {
     );
 
     function handleClick(i: number) {
+        if (squares[i]) {
+            return;
+        }
         const nextSquares = squares.slice();
         if (xIsNext) {
             nextSquares[i] = "X";
@@ -28,7 +32,7 @@ export default function Board() {
 
     return (
         <div className="flex h-screen w-screen flex-col items-center justify-center">
-            <h1 className="mb-3 text-4xl">Tic Tac Toe</h1>
+            <Title className="mb-3">Tic Tac Toe</Title>
             <div className="board-row-container">
                 <div className="board-row">
                     <Square
@@ -73,7 +77,15 @@ export default function Board() {
                     onSquareClick={() => handleClick(8)}
                 />
             </div>
-            <button onClick={handleRestart}>Restart</button>
+            <Button
+                className="my-2"
+                variant="filled"
+                size="sm"
+                color="rgba(52, 58, 64, 1)"
+                onClick={handleRestart}
+            >
+                Restart
+            </Button>
         </div>
     );
 }
