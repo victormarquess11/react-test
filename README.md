@@ -1,30 +1,56 @@
-# React + TypeScript + Vite
+# Project Information
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a learning exercise focused on React and its ecosystem.
 
-Currently, two official plugins are available:
+The main technologies and tools used in this project include:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   [React](https://react.dev/)
+-   [Typescript](https://www.typescriptlang.org/docs/)
+-   [Vite](https://vitejs.dev/)
+-   [Mantine UI](https://mantine.dev/getting-started/)
+-   [Tailwind](https://tailwindcss.com/docs/installation)
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Make sure you have the following software installed on your machine:
 
-- Configure the top-level `parserOptions` property like this:
+-   [Node.js](https://nodejs.org/) (which includes npm)
+-   [Git](https://git-scm.com/)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Getting Started
+
+To get a local copy up and running, follow these steps.
+
+### Installation
+
+1. **Clone the repository**:
+
+    ```sh
+    git clone https://github.com/victormarquess11/first-react.git
+    cd first-react
+    ```
+
+2. **Install dependencies**:
+    ```sh
+    npm install
+    ```
+
+### Usage
+
+To start the development server, run:
+
+```sh
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Use http://localhost:8080 to view it in your browser.
+
+The page will hot-reload when you make changes.
+
+### Available Scripts
+
+In the project directory, you can run:
+
+-   `npm run dev`: Runs the app in development mode.
+-   `npm run build`: Builds the app for production.
+-   `npm run preview`: Previews the production build.
