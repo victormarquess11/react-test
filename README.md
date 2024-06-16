@@ -14,7 +14,7 @@ The main technologies and tools used in this project include:
 
 Make sure you have the following software installed on your machine:
 
--   [Node.js](https://nodejs.org/) (which includes npm)
+-   [Node.js](https://nodejs.org/) v16 or higher (which includes npm)
 -   [Git](https://git-scm.com/)
 
 ## Getting Started
