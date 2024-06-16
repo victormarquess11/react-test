@@ -8,6 +8,7 @@ type PlayerSquareSymbols = "X" | "O";
 export type SquareSymbols = PlayerSquareSymbols | null;
 
 export default function Board() {
+    const [win, setWin] = useState<SquareSymbols>(null);
     const [currentSymbol, setCurrentSymbol] =
         useState<PlayerSquareSymbols>("X");
     const [squares, setSquares] = useState<SquareSymbols[]>(
@@ -19,7 +20,7 @@ export default function Board() {
             return;
         }
         const nextSquares = squares.slice();
-        let nextSymbol: PlayerSquareSymbols = "X";
+        let nextSymbol: SquareSymbols = null;
 
         switch (currentSymbol) {
             case "X":
@@ -36,13 +37,16 @@ export default function Board() {
 
         setSquares(nextSquares);
         if (calculateWinner(nextSquares) != null) {
-            console.log(`Ganhador é ${currentSymbol}`);
+            setWin(currentSymbol);
         }
-        setCurrentSymbol(nextSymbol);
+        if (nextSymbol) {
+            setCurrentSymbol(nextSymbol);
+        }
     }
 
     function handleRestart() {
         setSquares(Array(9).fill(null));
+        setWin(null);
         setCurrentSymbol("X");
     }
 
@@ -77,7 +81,10 @@ export default function Board() {
 
     return (
         <div className="flex h-screen w-screen flex-col items-center justify-center">
-            <Title className="mb-3">Tic Tac Toe</Title>
+            <Title className="mb-2">Tic Tac Toe</Title>
+            <div className="win">
+                {win ? `Winner: ${win}` : `Next player: ${currentSymbol}`}
+            </div>
             <div className="board-row-container">
                 <div className="board-row">
                     <Square
@@ -122,15 +129,17 @@ export default function Board() {
                     onSquareClick={() => handleClick(8)}
                 />
             </div>
-            <Button
-                className="my-2"
-                variant="filled"
-                size="sm"
-                color="rgba(52, 58, 64, 1)"
-                onClick={handleRestart}
-            >
-                Restart
-            </Button>
+            <div className="button-container">
+                <Button
+                    className="my-2"
+                    variant="filled"
+                    size="sm"
+                    color="rgba(52, 58, 64, 1)"
+                    onClick={handleRestart}
+                >
+                    Restart
+                </Button>
+            </div>
         </div>
     );
 }
