@@ -1,4 +1,4 @@
-import type { SquareSymbols } from "./Board.tsx";
+import type { SquareSymbols } from './Game.tsx';
 
 type SquareProps = {
     value: SquareSymbols;
