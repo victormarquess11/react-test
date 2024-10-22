@@ -1,3 +1,4 @@
+import './Game.css';
 import { useState } from 'react';
 
 import { Button, Title } from '@mantine/core';
@@ -23,7 +24,7 @@ export default function Game() {
         setCurrentMove(nextMove);
     }
 
-    const moves = history.map((squares, move) => {
+    const moves = history.map((_squares, move) => {
         let description;
         if (move > 0) {
             description = 'Go to move #' + move;
@@ -56,7 +57,7 @@ export default function Game() {
                         onPlay={handlePlay}
                     ></Board>
                 </div>
-                <div className="game-info mt-1">
+                <div className="game-info mt-1 flex-wrap">
                     <ol>{moves}</ol>
                 </div>
             </div>
